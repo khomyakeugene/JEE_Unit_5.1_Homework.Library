@@ -26,38 +26,63 @@ public class SimpleParser implements Parser {
         operandList.forEach(s -> s = s.trim());
 
         // Try to find operation by code in the <operandList>
-        Stream<String> operationCodeStream = operationCodeSet.stream().filter(operandList::contains);
+        final Stream<String> operationCodeStream = operationCodeSet.stream().filter(operandList::contains);
         final Optional<String> first = operationCodeStream.findFirst();
+        // Firstly, <operator type> is not recognized
+        OperatorType operatorType = OperatorType.NOT_RECOGNIZED;
         // Check if available operation code is presented there (use the "first.isPresent()" to avoid
         // from corresponding inspection warning)
         String operationCode = first.isPresent() ? first.get() : null;
-        // Firstly, <operator type> is not recognized
-        OperatorType operatorType = OperatorType.NOT_RECOGNIZED;
+        if (operationCode != null) {
+            // Check that there should be only one available operation code
+            if (operationCodeStream.count() > 1) {
+                throw new IllegalArgumentException(String.format(MORE_THAN_ONE_AVAILABLE_OPERATION_CODES_ARE_FOUND_PATTERN,
+                        Arrays.toString(operationCodeStream.toArray()), inputExpression));
+            }
 
-        // If operation code is not found, ...
-        if (operationCode == null) {
-            // ... try to process operand list to search unary operator
-            operationCodeStream = operandList.stream().filter(operand -> {
-                final int operandLength = operand.length();
-                return operationCodeSet.stream().filter(operation -> {
-                    int index = operand.indexOf(operation);
-                    // Unary operator can be present either in the beginning or in the end of operand
-                    return (index == 0) || (index + operation.length()) == operandLength;
-                }).count() > 1;
-            });
-        } else {
             // Try to detect <operator type>
             if (operandList.indexOf(operationCode) > 0) {
                 operatorType = OperatorType.BINARY;
             }
             // Delete <operation code> from operands list
             operandList.remove(operationCode);
-        }
-
-        // Check that there should be only one available operation code
-        if (operationCodeStream.count() > 1) {
-            throw new IllegalArgumentException(String.format(MORE_THAN_ONE_AVAILABLE_OPERATION_CODES_ARE_FOUND_PATTERN,
-                    Arrays.toString(operationCodeStream.toArray()), inputExpression));
+        } else {
+            // If operation code is not found, try to process operand list to search unary operator
+            // (lambda expression cannot be used because of the necessary to change the values of the local valuables
+            // such as <operatorType> and <operationCode>)
+            for (int i = 0; i < operandList.size(); i++) {
+                String operand = operandList.get(i);
+                final int operandLength = operand.length();
+                for (String operation : operationCodeSet) {
+                    int index = operand.indexOf(operation);
+                    int operationLength = operation.length();
+                    // Unary operator can be present either in the beginning or in the end of operand
+                    OperatorType thisOperatorType = (index == 0) ? OperatorType.PREFIX_UNARY :
+                            ((index + operationLength) == operandLength) ? OperatorType.POSTFIX_UNARY :
+                                    OperatorType.NOT_RECOGNIZED;
+                    if (thisOperatorType != OperatorType.NOT_RECOGNIZED) {
+                        // Check that only one unary operator should be presented
+                        if (operatorType == OperatorType.NOT_RECOGNIZED) {
+                            // First unary operator has been found
+                            operatorType = thisOperatorType;
+                            operationCode = operation;
+                            // Modify operand
+                            if (operatorType == OperatorType.PREFIX_UNARY) {
+                                operand = operand.substring(operationLength);
+                            } else {
+                                operand = operand.substring(0, operandLength-operationLength-1);
+                            }
+                            // Save modified operand
+                            operandList.set(i, operand);
+                        } else {
+                            // Only one unary operator should be presented!
+                            throw new IllegalArgumentException(String.format(
+                                    MORE_THAN_ONE_AVAILABLE_OPERATION_CODES_ARE_FOUND_PATTERN,
+                                    String.format("%s, %s", operationCode, operation), inputExpression));
+                        }
+                    }
+                }
+            }
         }
 
         // Check if operation code is presented
