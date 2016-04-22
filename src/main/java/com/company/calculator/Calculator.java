@@ -20,4 +20,10 @@ public interface Calculator {
      * Add <b>operationCode</b> associated with its <b>operationCode</b> to the list of the operations which can be executed
      */
     void addOperation(String operationCode, Operation operation);
+
+    /**
+     *
+     * @param parser -
+     */
+    void setParser(Parser parser);
 }
