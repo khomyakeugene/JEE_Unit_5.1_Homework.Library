@@ -24,7 +24,7 @@ public interface Parser {
     /**
      *
      *
-     * @param operations - list of the string representative available operations
+     * @param operationCodeSet - list of the string representative available operations
      * @param inputExpression - simple algebraic formula like "3 + 6"
      * @return {@link com.company.calculator.ParseResult}-object contained string which represents "name" of <b>operationCode</b>
      * and {@link java.util.List}-list of String-presented <b>operands</b>
@@ -32,5 +32,5 @@ public interface Parser {
      * This method is using <i>default</i> delimiter defined by developer
      *
      */
-    ParseResult parse(Set<String> operations, String inputExpression);
+    ParseResult parse(Set<String> operationCodeSet, String inputExpression);
 }
