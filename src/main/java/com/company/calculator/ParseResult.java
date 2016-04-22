@@ -6,7 +6,9 @@ import java.util.List;
  * Created by Yevhen on 21.04.2016.
  */
 public interface ParseResult {
-    String operation();
+    String operationCode();
 
-    List<String> operands();
+    OperatorType operatorType();
+
+    List<String> operandList();
 }
