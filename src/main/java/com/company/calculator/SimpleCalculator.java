@@ -3,6 +3,7 @@ package com.company.calculator;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.stream.Collectors;
 
 /**
  * Created by Yevhen on 22.04.2016.
@@ -19,6 +20,15 @@ public class SimpleCalculator implements Calculator {
 
     @Override
     public String execute(String inputExpression) {
+        // Parse input expression: receive operation description in <parseResult> or IllegalArgumentException
+        // if inputExpression is invalid
+        ParseResult parseResult = parser.parse(operationMap.keySet(), inputExpression);
+        // Search suitable operation(s)
+        List<Operation> operationList = operationMap.get(parseResult.operationCode()).
+                stream().filter(o -> o.isThisOperation(inputExpression, parseResult)).collect(Collectors.toList());
+
+
+
         return null;
     }
 
