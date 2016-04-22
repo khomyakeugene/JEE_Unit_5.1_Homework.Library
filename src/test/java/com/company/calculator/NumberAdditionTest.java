@@ -29,8 +29,8 @@ public class NumberAdditionTest {
         int intOperand_2 = Util.getRandomInteger();
 
         ArrayList<String> operands = new ArrayList<>();
-        operands.add(Double.toString(intOperand_1));
-        operands.add(Double.toString(intOperand_2));
+        operands.add(Integer.toString(intOperand_1));
+        operands.add(Integer.toString(intOperand_2));
         numberAddition.setOperands(operands);
 
         assertEquals(Integer.toString(intOperand_1 + intOperand_2), numberAddition.execute());

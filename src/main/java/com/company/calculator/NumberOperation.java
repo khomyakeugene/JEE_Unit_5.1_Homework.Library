@@ -9,6 +9,10 @@ public abstract class NumberOperation extends EmptyOperation implements Operatio
         return Numbers.isDoubleOperation(getOperandCount(), parseResult.operandList());
     }
 
+    protected Long getLongOperand(int index) {
+        return Long.parseLong(getOperand(index));
+    }
+
     protected Double getDoubleOperand(int index) {
         return Double.parseDouble(getOperand(index));
     }
