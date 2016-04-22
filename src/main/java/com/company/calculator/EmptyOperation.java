@@ -23,6 +23,7 @@ public abstract class EmptyOperation implements Operation {
 
     @Override
     public void addOperands(List<String> operands) {
+        operandList.clear();
         operandList.addAll(operands);
     }
 
