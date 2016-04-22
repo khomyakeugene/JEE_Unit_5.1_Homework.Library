@@ -3,33 +3,52 @@ package com.company.calculator;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 /**
  * Created by Yevhen on 22.04.2016.
  */
 public class SimpleCalculator implements Calculator {
+    private static final String ADDITION_OPERATION_CODE = "+";
+    private static final String SUBTRACT_OPERATION_CODE = "-";
+
     private HashMap<String, List<Operation>> operationMap;
     private Parser parser;
 
     public SimpleCalculator() {
-        operationMap = new HashMap<>();
-
         setParser(new SimpleParser());
+
+        operationMap = new HashMap<>();
+    }
+
+    public void initDefaultOperationList() {
+        // Addition operation for numbers
+        addOperation(ADDITION_OPERATION_CODE, new NumberAddition());
+        // Subtract operation for numbers
+        addOperation(SUBTRACT_OPERATION_CODE, new NumberSubtract());
     }
 
     @Override
     public String execute(String inputExpression) {
+        String result = null;
+
         // Parse input expression: receive operation description in <parseResult> or IllegalArgumentException
-        // if inputExpression is invalid
+        // if <inputExpression> is invalid
         ParseResult parseResult = parser.parse(operationMap.keySet(), inputExpression);
-        // Search suitable operation(s)
-        List<Operation> operationList = operationMap.get(parseResult.operationCode()).
-                stream().filter(o -> o.isThisOperation(inputExpression, parseResult)).collect(Collectors.toList());
+        // Search suitable operation, always suppose that if such operations would be more than one, only the first
+        // should be executed
+        Optional<Operation> first = operationMap.get(parseResult.operationCode()).
+                stream().filter(o -> o.isThisOperation(inputExpression, parseResult)).findFirst();
+        if (first.isPresent()) {
+            Operation operation = first.get();
+            // Store operands
+            operation.addOperands(parseResult.operandList());
+            // Execute operation
+            result = operation.execute();
+        }
 
-
-
-        return null;
+        return result;
     }
 
     @Override
