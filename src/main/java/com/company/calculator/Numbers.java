@@ -17,7 +17,7 @@ public class Numbers {
         if (result) {
             // Try to parse each operand as Double
             try {
-                operandList.stream().forEach(Numbers::parseNumber);
+                operandList.stream().forEach(Double::parseDouble);
             } catch (NullPointerException | NumberFormatException e) {
                 result = false;
             }

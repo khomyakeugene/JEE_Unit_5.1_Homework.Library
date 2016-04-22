@@ -37,4 +37,8 @@ public abstract class EmptyOperation implements Operation {
     protected void setOperandCount(int operandCount) {
         this.operandCount = operandCount;
     }
+
+    protected String getOperand(int index) {
+        return operandList.get(index);
+    }
 }

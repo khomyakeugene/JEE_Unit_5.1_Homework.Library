@@ -8,4 +8,8 @@ public abstract class NumberOperation extends EmptyOperation implements Operatio
     public boolean isThisOperation(String inputExpression, ParseResult parseResult) {
         return Numbers.isDoubleOperation(getOperandCount(), parseResult.operandList());
     }
+
+    protected Double getDoubleOperand(int index) {
+        return Double.parseDouble(getOperand(index));
+    }
 }

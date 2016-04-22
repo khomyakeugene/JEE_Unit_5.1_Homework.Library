@@ -6,6 +6,6 @@ package com.company.calculator;
 public class NumberAddition extends BinaryNumberOperation implements Operation {
     @Override
     public String execute() {
-        return null;
+        return Double.toString(getDoubleOperand(0) + getDoubleOperand(1));
     }
 }
