@@ -7,7 +7,9 @@ import java.util.List;
  */
 public class Numbers {
     public static boolean isDoubleOperation(int operandCount, List<String> operandList) {
-        boolean result = operandList.size() == operandCount;
+        // If <operandCount> < 0, th count of operands will not be checked
+        boolean result = (operandCount < 0) || operandList.size() == operandCount;
+
         if (result) {
             // Try to parse each operand as Double
             try {
