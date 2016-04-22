@@ -11,15 +11,15 @@ public class InfixNotationParser implements Parser {
     private static final char DEFAULT_DELIMITER = ' ';
 
     @Override
-    public ParseResult parse(Set<String> operations, String inputData, char delimiter) {
+    public ParseResult parse(Set<String> operations, String inputExpression, char delimiter) {
         //
-        ArrayList<String> operandsList = new ArrayList<>(Arrays.asList(inputData.split(Character.toString(delimiter))));
+        ArrayList<String> operandsList = new ArrayList<>(Arrays.asList(inputExpression.split(Character.toString(delimiter))));
         // In case that <delimiter> is not space character and the leading and(or) trailing whitespace could be presented
-        // in the inputData
-        operandsList.forEach(s -> {s = s.trim();});
+        // in the inputExpression
+        operandsList.forEach(s -> s = s.trim());
 
         // Try to find operation by code in the <operandsList>
-        operandsList.stream().
+        //operandsList.stream().
 
 
         return null;

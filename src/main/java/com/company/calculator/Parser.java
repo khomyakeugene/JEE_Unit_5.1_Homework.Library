@@ -10,13 +10,13 @@ public interface Parser {
      *
      *
      * @param operations - list of the string representative available operations
-     * @param inputData - simple algebraic formula like "3 + 6"
+     * @param inputExpression - simple algebraic formula like "3 + 6"
      * @param delimiter - delimiter between <b>operands </b> and and between <b>operands</b> and <b>operation</b>
      * @return {@link com.company.calculator.ParseResult}-object contained string which represents "name" of <b>operation</b>
      * and {@link java.util.List}-list of String-presented <b>operands</b>
      *
      */
-    ParseResult parse(Set<String> operations, String inputData, char delimiter);
+    ParseResult parse(Set<String> operations, String inputExpression, char delimiter);
 
     /**
      *

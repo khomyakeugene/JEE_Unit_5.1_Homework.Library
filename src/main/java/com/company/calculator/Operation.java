@@ -3,9 +3,11 @@ package com.company.calculator;
 /**
  * Created by Yevhen on 21.04.2016.
  */
-public interface Operation<T> {
-    void addOperand(T operand);
+public interface Operation {
+    void addOperand(String operand);
 
-    T execute();
+    boolean isThisOperation(String inputExpression, ParseResult parseResult);
+
+    String execute();
 }
 
