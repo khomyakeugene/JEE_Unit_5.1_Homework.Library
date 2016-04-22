@@ -11,23 +11,13 @@ public abstract class EmptyOperation implements Operation {
     private ArrayList<String> operandList = new ArrayList<>();
 
     @Override
-    public void clearOperands() {
-        operandList.clear();
-    }
-
-    @Override
     public abstract boolean isThisOperation(String inputExpression, ParseResult parseResult);
 
     @Override
     public abstract String execute();
 
     @Override
-    public void addOperand(String operand) {
-        operandList.add(operand);
-    }
-
-    @Override
-    public void addOperands(List<String> operands) {
+    public void setOperands(List<String> operands) {
         operandList.clear();
         operandList.addAll(operands);
     }

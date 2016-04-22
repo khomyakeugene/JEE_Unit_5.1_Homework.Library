@@ -35,14 +35,14 @@ public class SimpleCalculator implements Calculator {
         // Parse input expression: receive operation description in <parseResult> or IllegalArgumentException
         // if <inputExpression> is invalid
         ParseResult parseResult = parser.parse(operationMap.keySet(), inputExpression);
-        // Search suitable operation, always suppose that if such operations would be more than one, only the first
-        // should be executed
+        // Search suitable operation, always suppose that if such operation could be found more than one be more,
+        // only the first one should be executed
         Optional<Operation> first = operationMap.get(parseResult.operationCode()).
                 stream().filter(o -> o.isThisOperation(inputExpression, parseResult)).findFirst();
         if (first.isPresent()) {
             Operation operation = first.get();
             // Store operands
-            operation.addOperands(parseResult.operandList());
+            operation.setOperands(parseResult.operandList());
             // Execute operation
             result = operation.execute();
         }

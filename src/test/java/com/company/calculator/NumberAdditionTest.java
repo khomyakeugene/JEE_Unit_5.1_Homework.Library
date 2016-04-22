@@ -1,7 +1,6 @@
 package com.company.calculator;
 
-import org.junit.Before;
-import org.junit.BeforeClass;
+import java.util.ArrayList;
 
 import static org.junit.Assert.*;
 
@@ -9,22 +8,31 @@ import static org.junit.Assert.*;
  * Created by Yevhen on 22.04.2016.
  */
 public class NumberAdditionTest {
-    private static final String TEST_01_FIRST_OPERAND = "6";
-    private static final String TEST_01_SECOND_OPERAND = "7";
-    private static final String TEST_01_RESULT = "13";
+    private NumberAddition numberAddition = new NumberAddition();
 
-    NumberAddition numberAddition;
+    @org.junit.Test
+    public void executeDoubleTest() throws Exception {
+        double doubleOperand_1 = Util.getRandomDoubleValue();
+        double doubleOperand_2 = Util.getRandomDoubleValue();
 
-    @BeforeClass
-    public void setUpClass() throws Exception {
-        numberAddition = new NumberAddition();
+        ArrayList<String> operands = new ArrayList<>();
+        operands.add(Double.toString(doubleOperand_1));
+        operands.add(Double.toString(doubleOperand_2));
+        numberAddition.setOperands(operands);
 
+        assertEquals(Double.toString(doubleOperand_1 + doubleOperand_2), numberAddition.execute());
     }
 
     @org.junit.Test
-    public void execute() throws Exception {
-        assertEquals();
+    public void executeIntegerTest() throws Exception {
+        int intOperand_1 = Util.getRandomInteger();
+        int intOperand_2 = Util.getRandomInteger();
 
+        ArrayList<String> operands = new ArrayList<>();
+        operands.add(Double.toString(intOperand_1));
+        operands.add(Double.toString(intOperand_2));
+        numberAddition.setOperands(operands);
+
+        assertEquals(Integer.toString(intOperand_1 + intOperand_2), numberAddition.execute());
     }
-
 }
