@@ -8,6 +8,8 @@ import java.util.List;
 public interface Operation {
     boolean isThisOperation(String inputExpression, ParseResult parseResult);
 
+    void clearOperands();
+
     void addOperand(String operand);
 
     void addOperands(List<String> operands);

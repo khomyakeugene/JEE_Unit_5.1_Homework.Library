@@ -11,6 +11,11 @@ public abstract class EmptyOperation implements Operation {
     private ArrayList<String> operandList = new ArrayList<>();
 
     @Override
+    public void clearOperands() {
+        operandList.clear();
+    }
+
+    @Override
     public abstract boolean isThisOperation(String inputExpression, ParseResult parseResult);
 
     @Override
@@ -35,11 +40,11 @@ public abstract class EmptyOperation implements Operation {
         return operandList;
     }
 
-    protected void setOperandCount(int operandCount) {
-        this.operandCount = operandCount;
-    }
-
     protected String getOperand(int index) {
         return operandList.get(index);
+    }
+
+    protected void setOperandCount(int operandCount) {
+        this.operandCount = operandCount;
     }
 }
