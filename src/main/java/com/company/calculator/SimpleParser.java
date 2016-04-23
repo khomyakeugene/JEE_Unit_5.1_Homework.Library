@@ -1,6 +1,7 @@
 package com.company.calculator;
 
 import java.util.*;
+import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 /**
@@ -25,27 +26,28 @@ public class SimpleParser implements Parser {
         // in the inputExpression
         operandList.forEach(s -> s = s.trim());
 
-        // Try to find operation by code in the <operandList>
-        final Stream<String> operationCodeStream = operationCodeSet.stream().filter(operandList::contains);
-        final Optional<String> first = operationCodeStream.findFirst();
         // Firstly, <operator type> is not recognized
         OperatorType operatorType = OperatorType.NOT_RECOGNIZED;
-        // Check if available operation code is presented there (use the "first.isPresent()" to avoid
-        // from corresponding inspection warning)
-        String operationCode = first.isPresent() ? first.get() : null;
-        if (operationCode != null) {
-            // Check that there should be only one available operation code
-            if (operationCodeStream.count() > 1) {
-                throw new IllegalArgumentException(String.format(MORE_THAN_ONE_AVAILABLE_OPERATION_CODES_ARE_FOUND_PATTERN,
-                        Arrays.toString(operationCodeStream.toArray()), inputExpression));
-            }
+        // Firstly, <operation code> is not recognized
+        String operationCode = null;
 
+        // Try to find operation by code in the <operandList>
+        final ArrayList<String> operationCodeList =
+                operationCodeSet.stream().filter(operandList::contains).
+                        collect(Collectors.toCollection(ArrayList<String>::new));
+        // Check that there should be only one available operation code
+        if (operationCodeList.size() > 1) {
+            throw new IllegalArgumentException(String.format(MORE_THAN_ONE_AVAILABLE_OPERATION_CODES_ARE_FOUND_PATTERN,
+                    Arrays.toString(operationCodeList.toArray()), inputExpression));
+        }
+        if (operationCodeList.size() == 1) {
+            operationCode = operationCodeList.get(0);
             // Try to detect <operator type>
             if (operandList.indexOf(operationCode) > 0) {
                 operatorType = OperatorType.BINARY;
+                // Delete <operation code> from operands list
+                operandList.remove(operationCode);
             }
-            // Delete <operation code> from operands list
-            operandList.remove(operationCode);
         } else {
             // If operation code is not found, try to process operand list to search unary operator
             // (lambda expression cannot be used because of the necessary to change the values of the local valuables

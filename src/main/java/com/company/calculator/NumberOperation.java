@@ -55,9 +55,9 @@ public abstract class NumberOperation extends EmptyOperation implements Operatio
     }
 
     private String numberConversation(String number) {
-        // To avoid to use the fractional part try to re-convert the result as integer (Long) if it is possible
         // Detect possible "minimum" number type of the "whole operation" and store in the field <conversationClass>
         if (detectConversationClass() == Long.class) {
+            // To avoid to use the fractional part try to re-convert the result as integer (Long) if it is possible
             number = Long.toString((long)Double.parseDouble(number));
         }
 

@@ -19,16 +19,16 @@ public class SimpleParseResult implements ParseResult {
 
     @Override
     public String operationCode() {
-        return null;
+        return operationCode;
     }
 
     @Override
     public OperatorType operatorType() {
-        return null;
+        return operationType;
     }
 
     @Override
     public List<String> operandList() {
-        return null;
+        return operandList;
     }
 }
