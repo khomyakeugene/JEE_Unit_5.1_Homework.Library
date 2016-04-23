@@ -37,8 +37,7 @@ public class Numbers {
             try {
                 double doubleValue = Double.parseDouble(number);
                 // But again try to use Long
-                long longValue = Math.round(doubleValue);
-                result = (longValue == doubleValue) ? Long.class : Double.class;
+                result = (Math.round(doubleValue) == doubleValue) ? Long.class : Double.class;
             } catch (NullPointerException | NumberFormatException doubleException) {
                 result = null;
             }
