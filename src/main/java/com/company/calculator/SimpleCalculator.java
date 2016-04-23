@@ -12,14 +12,10 @@ public class SimpleCalculator implements Calculator {
     private static final String ADDITION_OPERATION_CODE = "+";
     private static final String SUBTRACT_OPERATION_CODE = "-";
 
-    private HashMap<String, List<Operation>> operationMap;
-    private Parser parser;
+    private HashMap<String, List<Operation>> operationMap = new HashMap<>();
+    private Parser parser = new SimpleParser();
 
     public SimpleCalculator() {
-        setParser(new SimpleParser());
-
-        operationMap = new HashMap<>();
-
         initDefaultOperationList();
     }
 
