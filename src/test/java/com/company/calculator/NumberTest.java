@@ -12,7 +12,7 @@ public abstract class NumberTest {
 
     protected abstract double calcExpected(double operand_1, double  operand_2);
 
-    private String calcExpected(String operand_1, String operand_2) {
+    private String expectedResult(String operand_1, String operand_2) {
         return Numbers.numberConversation(Double.toString(
                 calcExpected(Double.parseDouble(operand_1), Double.parseDouble(operand_2))));
     }
@@ -28,6 +28,6 @@ public abstract class NumberTest {
         operands.add(operand_2);
         numberOperation.setOperands(operands);
 
-        assertEquals(calcExpected(operand_1, operand_2), numberOperation.execute());
+        assertEquals(expectedResult(operand_1, operand_2), numberOperation.execute());
     }
 }
