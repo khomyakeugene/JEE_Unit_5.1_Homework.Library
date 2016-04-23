@@ -11,7 +11,7 @@ import java.util.stream.Collectors;
 public class SimpleParser implements Parser {
     private static final String IMPOSSIBLE_TO_RECOGNIZE_OPERATION_CODE_PATTERN =
             "It is impossible to recognize available operation code in the expression\n   \"%s\".\n" +
-                    "Only such operation codes are known: %s";
+                    "Only these operation codes are known: %s";
     private static final String THERE_ARE_NO_OPERANDS_PATTERN =
             "There are no operands in the expression\n   \"%s\"";
     private static final String MORE_THAN_ONE_AVAILABLE_OPERATION_CODES_ARE_FOUND_PATTERN =
