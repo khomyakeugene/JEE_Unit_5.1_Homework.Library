@@ -8,4 +8,8 @@ public abstract class IntegerOperation extends NumberOperation implements Operat
     public boolean isThisOperation(String inputExpression, ParseResult parseResult) {
         return Numbers.isIntegerOperation(getExpectedOperandCount(), parseResult.operandList());
     }
+
+    public Long getIntegerOperand(int index) {
+        return Long.parseLong(getOperand(index));
+    }
 }
