@@ -22,6 +22,6 @@ public abstract class NumberOperation extends EmptyOperation implements Operatio
     }
 
     private String numberConversation(String number) {
-        return Numbers.numberConversation(number, getOperandList().toArray(new String[getOperandList().size()]));
+        return Numbers.numberConversation(number);
     }
 }

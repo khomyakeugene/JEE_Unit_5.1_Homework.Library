@@ -26,17 +26,19 @@ public class Numbers {
         return result;
     }
 
-    public static Class detectConversationClass(String operand) {
+    public static Class detectConversationClass(String number) {
         Class result;
 
         try {
-            Long.parseLong(operand);
+            Long.parseLong(number);
             result = Long.class;
         } catch (NullPointerException | NumberFormatException longException) {
             // Try to use Double
             try {
-                Double.parseDouble(operand);
-                result = Double.class;
+                double doubleValue = Double.parseDouble(number);
+                // But again try to use Long
+                long longValue = Math.round(doubleValue);
+                result = (longValue == doubleValue) ? Long.class : Double.class;
             } catch (NullPointerException | NumberFormatException doubleException) {
                 result = null;
             }
@@ -45,27 +47,9 @@ public class Numbers {
         return result;
     }
 
-    public static Class detectConversationClass(String[] operands) {
-        // Suppose that <Long.class> is enough
-        Class result = Long.class;
-
-        // Try to recognize <conversationClass> (just <Long> or <Double> only) which could be used further to convert
-        // <calculation result> (see <numberConversation> method) to "corresponding" number-presentation;
-        // it is important to not "use", if it would be possible, the fractional part.
-        // Examine all the members of the <operandList>
-        for (String operand : operands) {
-            result = Numbers.detectConversationClass(operand);
-            if (result == null || result == Double.class) {
-                break;
-            }
-        }
-
-        return result;
-    }
-
-    public static String numberConversation(String number, String[] operands) {
+    public static String numberConversation(String number) {
         // Detect possible "minimum" number type of the "whole operation" and store in the field <conversationClass>
-        if (detectConversationClass(operands) == Long.class) {
+        if (detectConversationClass(number) == Long.class) {
             // To avoid to use the fractional part try to re-convert the result as integer (Long) if it is possible
             number = Long.toString((long)Double.parseDouble(number));
         }

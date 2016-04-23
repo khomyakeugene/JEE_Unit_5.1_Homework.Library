@@ -23,7 +23,7 @@ public class SimpleCalculatorTest extends ExpressionTest {
                 break;
         }
 
-        return Numbers.numberConversation(result.toString(), new String[] {operand_1, operand_2});
+        return Numbers.numberConversation(result.toString());
     }
 
     private void executeTest(String expression) throws Exception {
