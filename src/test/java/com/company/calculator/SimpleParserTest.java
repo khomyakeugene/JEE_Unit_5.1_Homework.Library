@@ -25,16 +25,16 @@ public class SimpleParserTest {
     private String operand_1;
     private String operand_2;
     private String operationCode;
-    private String validExpression;
-    private String invalidExpression;
+    private String validBinaryOperationExpression;
+    private String invalidBinaryOperationExpression;
 
     private void generateTestData() {
         operand_1 = Util.generateOperand();
         operand_2 = Util.generateOperand();
         operationCode = Util.getRandomBoolean() ? ADDITION_OPERATION_CODE : SUBTRACT_OPERATION_CODE;
 
-        validExpression = String.format(EXPRESSION_PATTERN, operand_1, operationCode, operand_2);
-        invalidExpression = String.format(EXPRESSION_PATTERN, operand_1, INVALID_OPERATION_CODE, operand_2);
+        validBinaryOperationExpression = String.format(EXPRESSION_PATTERN, operand_1, operationCode, operand_2);
+        invalidBinaryOperationExpression = String.format(EXPRESSION_PATTERN, operand_1, INVALID_OPERATION_CODE, operand_2);
     }
 
     @BeforeClass
@@ -49,16 +49,17 @@ public class SimpleParserTest {
     }
 
     @Test(timeout = 1000)
-    public void parseValidTest() throws Exception {
-        ParseResult parseResult = simpleParser.parse(operationCodeSet, validExpression);
+    public void parseValidBinaryOperationTest() throws Exception {
+        ParseResult parseResult = simpleParser.parse(operationCodeSet, validBinaryOperationExpression);
 
         assertEquals(operationCode, parseResult.operationCode());
+        assertEquals(OperatorType.BINARY, parseResult.operatorType());
         assertArrayEquals(new String[] {operand_1, operand_2}, parseResult.operandList().toArray());
     }
 
     @Test(timeout = 1000, expected = IllegalArgumentException.class)
-    public void parseInvalidTest() throws Exception {
-        ParseResult parseResult = simpleParser.parse(operationCodeSet, invalidExpression);
+    public void parseInvalidBinaryOperationTest() throws Exception {
+        ParseResult parseResult = simpleParser.parse(operationCodeSet, invalidBinaryOperationExpression);
 
         assertEquals(operationCode, parseResult.operationCode());
         assertArrayEquals(new String[] {operand_1, operand_2}, parseResult.operandList().toArray());
