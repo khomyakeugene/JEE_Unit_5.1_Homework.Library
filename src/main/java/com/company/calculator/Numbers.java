@@ -26,6 +26,22 @@ public class Numbers {
         return result;
     }
 
+    public static boolean isIntegerOperation(int operandCount, List<String> operandList) {
+        // If <operandCount> < 0, th count of operands will not be checked
+        boolean result = (operandCount < 0) || (operandList.size() == operandCount);
+
+        if (result) {
+            // Try to parse each operand as Double
+            try {
+                operandList.stream().forEach(Long::parseLong);
+            } catch (NullPointerException | NumberFormatException e) {
+                result = false;
+            }
+        }
+
+        return result;
+    }
+
     public static Class detectConversationClass(String number) {
         Class result;
 
