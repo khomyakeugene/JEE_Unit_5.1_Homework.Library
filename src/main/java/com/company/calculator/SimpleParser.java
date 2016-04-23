@@ -58,30 +58,32 @@ public class SimpleParser implements Parser {
                 final int operandLength = operand.length();
                 for (String operation : operationCodeSet) {
                     int index = operand.indexOf(operation);
-                    int operationLength = operation.length();
-                    // Unary operator can be present either in the beginning or in the end of operand
-                    OperatorType thisOperatorType = (index == 0) ? OperatorType.PREFIX_UNARY :
-                            ((index + operationLength) == operandLength) ? OperatorType.POSTFIX_UNARY :
-                                    OperatorType.NOT_RECOGNIZED;
-                    if (thisOperatorType != OperatorType.NOT_RECOGNIZED) {
-                        // Check that only one unary operator should be presented
-                        if (operatorType == OperatorType.NOT_RECOGNIZED) {
-                            // First unary operator has been found
-                            operatorType = thisOperatorType;
-                            operationCode = operation;
-                            // Modify operand
-                            if (operatorType == OperatorType.PREFIX_UNARY) {
-                                operand = operand.substring(operationLength);
+                    if (index != - 1) {
+                        int operationLength = operation.length();
+                        // Unary operator can be present either in the beginning or in the end of operand
+                        OperatorType thisOperatorType = (index == 0) ? OperatorType.PREFIX_UNARY :
+                                ((index + operationLength) == operandLength) ? OperatorType.POSTFIX_UNARY :
+                                        OperatorType.NOT_RECOGNIZED;
+                        if (thisOperatorType != OperatorType.NOT_RECOGNIZED) {
+                            // Check that only one unary operator should be presented
+                            if (operatorType == OperatorType.NOT_RECOGNIZED) {
+                                // First unary operator has been found
+                                operatorType = thisOperatorType;
+                                operationCode = operation;
+                                // Modify operand
+                                if (operatorType == OperatorType.PREFIX_UNARY) {
+                                    operand = operand.substring(operationLength);
+                                } else {
+                                    operand = operand.substring(0, operandLength-operationLength-1);
+                                }
+                                // Save modified operand
+                                operandList.set(i, operand);
                             } else {
-                                operand = operand.substring(0, operandLength-operationLength-1);
+                                // Only one unary operator should be presented!
+                                throw new IllegalArgumentException(String.format(
+                                        MORE_THAN_ONE_AVAILABLE_OPERATION_CODES_ARE_FOUND_PATTERN,
+                                        String.format("%s, %s", operationCode, operation), inputExpression));
                             }
-                            // Save modified operand
-                            operandList.set(i, operand);
-                        } else {
-                            // Only one unary operator should be presented!
-                            throw new IllegalArgumentException(String.format(
-                                    MORE_THAN_ONE_AVAILABLE_OPERATION_CODES_ARE_FOUND_PATTERN,
-                                    String.format("%s, %s", operationCode, operation), inputExpression));
                         }
                     }
                 }
