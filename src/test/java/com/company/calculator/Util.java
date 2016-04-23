@@ -17,11 +17,19 @@ public class Util {
         return Math.round(value  * decimalPower) / decimalPower;
     }
 
-    public static double getRandomDoubleValue() {
+    public static double getRandomDouble() {
         return round(random.nextDouble() * OPERAND_UPPER_BOUND, DECIMAL_PRECISION);
     }
 
     public static int getRandomInteger() {
         return random.nextInt(OPERAND_UPPER_BOUND);
+    }
+
+    public static boolean getRandomBoolean() {
+        return random.nextBoolean();
+    }
+
+    public static String generateOperand() {
+        return Util.getRandomBoolean() ? Double.toString(getRandomDouble()) : Integer.toString(getRandomInteger());
     }
 }

@@ -8,7 +8,6 @@ import static org.junit.Assert.assertEquals;
  * Created by Yevhen on 23.04.2016.
  */
 public abstract class NumberTest {
-    private final static int ATTEMPT_COUNT = 10;
     protected static NumberOperation numberOperation;
 
     protected abstract int calcIntExpected(int operand_1, int  operand_2);
@@ -17,8 +16,8 @@ public abstract class NumberTest {
 
 
     private void executeDoubleTest() throws Exception {
-        double operand_1 = Util.getRandomDoubleValue();
-        double operand_2 = Util.getRandomDoubleValue();
+        double operand_1 = Util.getRandomDouble();
+        double operand_2 = Util.getRandomDouble();
 
         ArrayList<String> operands = new ArrayList<>();
         operands.add(Double.toString(operand_1));
@@ -40,11 +39,9 @@ public abstract class NumberTest {
         assertEquals(Integer.toString(calcIntExpected(operand_1, operand_2)), numberOperation.execute());
     }
 
-    @org.junit.Test
+    @org.junit.Test(timeout = 1000)
     public void executeTest() throws Exception {
-        for (int i = 0; i < ATTEMPT_COUNT; i++) {
-            executeIntegerTest();
-            executeDoubleTest();
-        }
+        executeIntegerTest();
+        executeDoubleTest();
     }
 }

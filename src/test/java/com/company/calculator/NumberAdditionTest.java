@@ -7,7 +7,7 @@ import org.junit.BeforeClass;
  */
 public class NumberAdditionTest extends NumberTest {
     @BeforeClass
-    public static void setUp() throws Exception {
+    public static void setUpClass() throws Exception {
         numberOperation = new NumberAddition();
     }
 
