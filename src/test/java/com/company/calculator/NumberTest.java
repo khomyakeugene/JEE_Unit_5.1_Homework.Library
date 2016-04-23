@@ -17,7 +17,6 @@ public abstract class NumberTest {
                 calcExpected(Double.parseDouble(operand_1), Double.parseDouble(operand_2))));
     }
 
-
     @org.junit.Test(timeout = 1000)
     public void executeTest() throws Exception {
         String operand_1 = Util.generateOperand();
