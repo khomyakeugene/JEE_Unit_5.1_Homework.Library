@@ -10,5 +10,5 @@ public interface ParseResult {
 
     OperatorType operatorType();
 
-    List<String> operandList();
+    List operandList();
 }

@@ -9,9 +9,9 @@ import java.util.List;
 public class SimpleParseResult implements ParseResult {
     private String operationCode;
     private OperatorType operationType;
-    private ArrayList operandList;
+    private ArrayList<String> operandList;
 
-    public SimpleParseResult(String operationCode, OperatorType operationType, ArrayList operandList) {
+    public SimpleParseResult(String operationCode, OperatorType operationType, ArrayList<String> operandList) {
         this.operationCode = operationCode;
         this.operationType = operationType;
         this.operandList = operandList;

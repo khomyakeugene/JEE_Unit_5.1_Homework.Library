@@ -48,7 +48,7 @@ public class SimpleParserTest {
         generateTestData();
     }
 
-    @Test
+    @Test(timeout = 1000)
     public void parseValidTest() throws Exception {
         ParseResult parseResult = simpleParser.parse(operationCodeSet, validExpression);
 
