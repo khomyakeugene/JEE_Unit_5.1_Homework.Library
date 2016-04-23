@@ -38,7 +38,7 @@ public class SimpleCalculatorTest extends ExpressionTest {
     }
 
     @Test(timeout = 1000, expected = IllegalArgumentException.class)
-    public void executeInalidExpressionTest() throws Exception {
+    public void executeInvalidExpressionTest() throws Exception {
         executeTest(invalidBinaryOperationExpression);
     }
 }
