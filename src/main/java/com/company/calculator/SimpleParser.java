@@ -1,8 +1,9 @@
 package com.company.calculator;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Set;
 import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
 /**
  * Created by Yevhen on 21.04.2016.
