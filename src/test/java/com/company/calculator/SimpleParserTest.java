@@ -22,20 +22,21 @@ public class SimpleParserTest extends ExpressionTest {
         operationCodeSet.add(SUBTRACT_OPERATION_CODE);
     }
 
-    @Test(timeout = 1000)
-    public void parseValidBinaryOperationTest() throws Exception {
-        ParseResult parseResult = simpleParser.parse(operationCodeSet, validBinaryOperationExpression);
+    private void parseBinaryOperationTest(String expression) throws Exception {
+        ParseResult parseResult = simpleParser.parse(operationCodeSet, expression);
 
         assertEquals(operationCode, parseResult.operationCode());
         assertEquals(OperatorType.BINARY, parseResult.operatorType());
         assertArrayEquals(new String[] {operand_1, operand_2}, parseResult.operandList().toArray());
     }
 
+    @Test(timeout = 1000)
+    public void parseValidBinaryOperationTest() throws Exception {
+        parseBinaryOperationTest(validBinaryOperationExpression);
+    }
+
     @Test(timeout = 1000, expected = IllegalArgumentException.class)
     public void parseInvalidBinaryOperationTest() throws Exception {
-        ParseResult parseResult = simpleParser.parse(operationCodeSet, invalidBinaryOperationExpression);
-
-        assertEquals(operationCode, parseResult.operationCode());
-        assertArrayEquals(new String[] {operand_1, operand_2}, parseResult.operandList().toArray());
-    }
+        parseBinaryOperationTest(invalidBinaryOperationExpression);
+   }
 }

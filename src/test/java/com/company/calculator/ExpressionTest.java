@@ -2,9 +2,6 @@ package com.company.calculator;
 
 import org.junit.Before;
 
-import java.util.Set;
-import java.util.TreeSet;
-
 /**
  * Created by Yevhen on 23.04.2016.
  */
