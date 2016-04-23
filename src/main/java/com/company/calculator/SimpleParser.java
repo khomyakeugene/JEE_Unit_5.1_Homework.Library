@@ -46,9 +46,9 @@ public class SimpleParser implements Parser {
             // Try to detect <operator type>
             if (operandList.indexOf(operationCode) > 0) {
                 operatorType = OperatorType.BINARY;
-                // Delete <operation code> from operands list
-                operandList.remove(operationCode);
             }
+            // Delete <operation code> from operands list
+            operandList.remove(operationCode);
         } else {
             // If operation code is not found, try to process operand list to search unary operator
             // (lambda expression cannot be used because of the necessary to change the values of the local valuables

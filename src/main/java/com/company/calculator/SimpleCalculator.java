@@ -24,10 +24,19 @@ public class SimpleCalculator implements Calculator {
     }
 
     private void initDefaultOperationList() {
+        class SquareRoot extends UnaryNumberOperation implements Operation {
+            @Override
+            protected String calculate() {
+                return Double.toString(Math.sqrt(getDoubleOperand(0)));
+            }
+        }
+
         // Addition operation for numbers
         addOperation(ADDITION_OPERATION_CODE, new NumberAddition());
         // Subtract operation for numbers
         addOperation(SUBTRACT_OPERATION_CODE, new NumberSubtract());
+
+        addOperation("sqrt", new SquareRoot());
     }
 
     @Override
