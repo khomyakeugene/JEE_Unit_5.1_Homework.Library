@@ -1,6 +1,5 @@
 package com.company.calculator;
 
-import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -9,9 +8,9 @@ import java.util.List;
 public class SimpleParseResult implements ParseResult {
     private String operationCode;
     private OperatorType operationType;
-    private ArrayList<String> operandList;
+    private List<String> operandList;
 
-    public SimpleParseResult(String operationCode, OperatorType operationType, ArrayList<String> operandList) {
+    public SimpleParseResult(String operationCode, OperatorType operationType, List<String> operandList) {
         this.operationCode = operationCode;
         this.operationType = operationType;
         this.operandList = operandList;

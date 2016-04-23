@@ -19,9 +19,11 @@ public class SimpleCalculator implements Calculator {
         setParser(new SimpleParser());
 
         operationMap = new HashMap<>();
+
+        initDefaultOperationList();
     }
 
-    public void initDefaultOperationList() {
+    private void initDefaultOperationList() {
         // Addition operation for numbers
         addOperation(ADDITION_OPERATION_CODE, new NumberAddition());
         // Subtract operation for numbers
