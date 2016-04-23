@@ -7,6 +7,6 @@ public abstract class BinaryNumberOperation extends NumberOperation implements O
     private final static int OPERANDS_COUNT = 2;
 
     public BinaryNumberOperation() {
-        setOperandCount(OPERANDS_COUNT);
+        setExpectedOperandCount(OPERANDS_COUNT);
     }
 }

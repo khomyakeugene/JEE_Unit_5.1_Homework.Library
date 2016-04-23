@@ -7,7 +7,7 @@ import java.util.List;
  * Created by Yevhen on 22.04.2016.
  */
 public abstract class EmptyOperation implements Operation {
-    private int operandCount = -1;
+    private int expectedOperandCount = -1;
     private ArrayList<String> operandList = new ArrayList<>();
 
     @Override
@@ -22,8 +22,8 @@ public abstract class EmptyOperation implements Operation {
         operandList.addAll(operands);
     }
 
-    protected int getOperandCount() {
-        return operandCount;
+    protected int getExpectedOperandCount() {
+        return expectedOperandCount;
     }
 
     protected ArrayList<String> getOperandList() {
@@ -34,7 +34,7 @@ public abstract class EmptyOperation implements Operation {
         return operandList.get(index);
     }
 
-    protected void setOperandCount(int operandCount) {
-        this.operandCount = operandCount;
+    protected void setExpectedOperandCount(int expectedOperandCount) {
+        this.expectedOperandCount = expectedOperandCount;
     }
 }
