@@ -25,9 +25,9 @@ public class SimpleCalculator implements Calculator {
 
     private void initDefaultOperationList() {
         // Addition operation for numbers
-        addOperation(ADDITION_OPERATION_CODE, new NumberAddition());
+        addOperation(ADDITION_OPERATION_CODE, new NumberAdditionOperation());
         // Subtract operation for numbers
-        addOperation(SUBTRACT_OPERATION_CODE, new NumberSubtract());
+        addOperation(SUBTRACT_OPERATION_CODE, new NumberSubtractOperation());
     }
 
     @Override
