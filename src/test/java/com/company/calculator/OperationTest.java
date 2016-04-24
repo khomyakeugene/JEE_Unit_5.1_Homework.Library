@@ -8,8 +8,12 @@ import static org.junit.Assert.assertEquals;
  * Created by Yevhen on 24.04.2016.
  */
 public abstract class OperationTest {
+    private static Operation operation;
     protected ArrayList<String> operands = new ArrayList<>();
-    protected static Operation operation;
+
+    protected static void setOperation(Operation operation) {
+        OperationTest.operation = operation;
+    }
 
     protected abstract void initOperands();
 
