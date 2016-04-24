@@ -18,8 +18,8 @@ public class ExpressionTest {
     protected String invalidBinaryOperationExpression;
 
     protected void generateTestData() {
-        operand_1 = Util.generateOperand();
-        operand_2 = Util.generateOperand();
+        operand_1 = Util.generateNumber();
+        operand_2 = Util.generateNumber();
         operationCode = Util.getRandomBoolean() ? ADDITION_OPERATION_CODE : SUBTRACT_OPERATION_CODE;
 
         validBinaryOperationExpression = String.format(EXPRESSION_PATTERN, operand_1, operationCode, operand_2);

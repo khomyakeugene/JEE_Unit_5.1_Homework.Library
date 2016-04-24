@@ -29,7 +29,15 @@ public class Util {
         return random.nextBoolean();
     }
 
-    public static String generateOperand() {
-        return Util.getRandomBoolean() ? Double.toString(getRandomDouble()) : Integer.toString(getRandomInteger());
+    public static String generateIntegerNumber() {
+        return Integer.toString(getRandomInteger());
+    }
+
+    public static String generateDoubleNumber() {
+        return Double.toString(getRandomDouble());
+    }
+
+    public static String generateNumber() {
+        return Util.getRandomBoolean() ? generateDoubleNumber() : generateIntegerNumber();
     }
 }
