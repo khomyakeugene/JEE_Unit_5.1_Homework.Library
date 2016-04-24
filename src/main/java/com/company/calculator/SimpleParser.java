@@ -74,7 +74,7 @@ public class SimpleParser implements Parser {
                                 if (operatorType == OperatorType.PREFIX_UNARY) {
                                     operand = operand.substring(operationLength);
                                 } else {
-                                    operand = operand.substring(0, operandLength-operationLength-1);
+                                    operand = operand.substring(0, operandLength-operationLength);
                                 }
                                 // Save modified operand
                                 operandList.set(i, operand);
