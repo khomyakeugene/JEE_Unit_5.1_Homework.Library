@@ -20,8 +20,6 @@ public class SimpleParserTest extends ExpressionTest {
     public static void setUpClass() throws Exception {
         operationCodeSet.add(ADDITION_OPERATION_CODE);
         operationCodeSet.add(SUBTRACT_OPERATION_CODE);
-
-        operationCodeSet.add("log10");
     }
 
     private void parseBinaryOperationTest(String expression) throws Exception {

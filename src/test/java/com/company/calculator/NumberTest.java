@@ -7,27 +7,26 @@ import static org.junit.Assert.assertEquals;
 /**
  * Created by Yevhen on 23.04.2016.
  */
-public abstract class NumberTest {
-    protected static NumberOperation numberOperation;
+public abstract class NumberTest extends OperationTest {
     protected static boolean onlyIntegerValues = false;
+
+    protected String operand_1;;
+    protected String operand_2;
 
     protected abstract double calcExpected(double operand_1, double  operand_2);
 
-    private String expectedResult(String operand_1, String operand_2) {
-        return Numbers.numberConversation(Double.toString(
-                calcExpected(Double.parseDouble(operand_1), Double.parseDouble(operand_2))));
-    }
+    @Override
+    protected void initOperands() {
+        operand_1 = onlyIntegerValues ? Util.generateIntegerNumber() : Util.generateNumber();
+        operand_2 = onlyIntegerValues ? Util.generateIntegerNumber() : Util.generateNumber();
 
-    @org.junit.Test(timeout = 1000)
-    public void executeTest() throws Exception {
-        String operand_1 = onlyIntegerValues ? Util.generateIntegerNumber() : Util.generateNumber();
-        String operand_2 = onlyIntegerValues ? Util.generateIntegerNumber() : Util.generateNumber();
-
-        ArrayList<String> operands = new ArrayList<>();
         operands.add(operand_1);
         operands.add(operand_2);
-        numberOperation.setOperands(operands);
+    }
 
-        assertEquals(expectedResult(operand_1, operand_2), numberOperation.execute());
+    @Override
+    protected String expectedResult() {
+        return Numbers.numberConversation(Double.toString(
+                calcExpected(Double.parseDouble(operand_1), Double.parseDouble(operand_2))));
     }
 }
