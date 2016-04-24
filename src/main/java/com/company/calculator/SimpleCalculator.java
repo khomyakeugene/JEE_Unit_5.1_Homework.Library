@@ -74,4 +74,9 @@ public class SimpleCalculator implements Calculator {
     public void setParser(Parser parser) {
         this.parser = parser;
     }
+
+    @Override
+    public String[] operationCodeList() {
+        return operationMap.keySet().toArray(new String[operationMap.keySet().size()]);
+    }
 }

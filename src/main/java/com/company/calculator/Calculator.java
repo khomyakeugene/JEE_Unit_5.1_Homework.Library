@@ -26,4 +26,10 @@ public interface Calculator {
      * @param parser -
      */
     void setParser(Parser parser);
+
+    /**
+     *
+     * @return - list of codes of available operations
+     */
+    String[] operationCodeList();
 }
