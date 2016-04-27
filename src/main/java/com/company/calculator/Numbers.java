@@ -42,7 +42,7 @@ public class Numbers {
         return result;
     }
 
-    public static Class detectConversationClass(String number) {
+    private static Class detectConversationClass(String number) {
         Class result;
 
         try {
