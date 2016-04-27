@@ -1,4 +1,4 @@
-package com.company.calculator;
+package com.company.calculator.library;
 
 /**
  * Created by Yevhen on 20.04.2016.

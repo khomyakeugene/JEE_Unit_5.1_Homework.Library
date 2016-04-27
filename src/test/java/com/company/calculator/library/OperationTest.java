@@ -1,4 +1,4 @@
-package com.company.calculator;
+package com.company.calculator.library;
 
 import java.util.ArrayList;
 
@@ -9,9 +9,9 @@ import static org.junit.Assert.assertEquals;
  */
 public abstract class OperationTest {
     private static Operation operation;
-    protected ArrayList<String> operands = new ArrayList<>();
+    ArrayList<String> operands = new ArrayList<>();
 
-    protected static void setOperation(Operation operation) {
+    static void setOperation(Operation operation) {
         OperationTest.operation = operation;
     }
 

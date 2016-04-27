@@ -1,23 +1,24 @@
-package com.company.calculator;
+package com.company.calculator.library;
 
 import org.junit.Before;
 
 /**
  * Created by Yevhen on 23.04.2016.
  */
-public class ExpressionTest {
-    protected static final String ADDITION_OPERATION_CODE = "+";
-    protected static final String SUBTRACT_OPERATION_CODE = "-";
-    protected static final String INVALID_OPERATION_CODE = "!!";
+class ExpressionTest {
+    private static final String INVALID_OPERATION_CODE = "^^^";
+
+    static final String ADDITION_OPERATION_CODE = "+";
+    static final String SUBTRACT_OPERATION_CODE = "-";
     private static final String EXPRESSION_PATTERN = "%s %s %s";
 
-    protected String operand_1;
-    protected String operand_2;
-    protected String operationCode;
-    protected String validBinaryOperationExpression;
-    protected String invalidBinaryOperationExpression;
+    String operand_1;
+    String operand_2;
+    String operationCode;
+    String validBinaryOperationExpression;
+    String invalidBinaryOperationExpression;
 
-    protected void generateTestData() {
+    private void generateTestData() {
         operand_1 = Util.generateNumber();
         operand_2 = Util.generateNumber();
         operationCode = Util.getRandomBoolean() ? ADDITION_OPERATION_CODE : SUBTRACT_OPERATION_CODE;

@@ -1,4 +1,4 @@
-package com.company.calculator;
+package com.company.calculator.library;
 
 import java.util.Set;
 
@@ -12,7 +12,7 @@ public interface Parser {
      * @param operationCodes - list of the string representative of codes (like "+", "-", "sqrt" etc.) of available operations
      * @param inputExpression - simple algebraic formula like "3 + 6"
      * @param delimiter - delimiter between <b>operands </b> and and between <b>operationCodeSet</b> and <b>operationCode</b>
-     * @return {@link com.company.calculator.ParseResult}-object contained string which represents "code" of <b>operationCode</b>
+     * @return {@link ParseResult}-object contained string which represents "code" of <b>operationCode</b>
      * and {@link java.util.List}-list of String-presented <b>operationCodeSet</b>
      * @throws IllegalArgumentException if <b>inputExpression</b> is invalid
      *
@@ -27,7 +27,7 @@ public interface Parser {
      *
      * @param operationCodeSet - list of the string representative available operations
      * @param inputExpression - simple algebraic formula like "3 + 6"
-     * @return {@link com.company.calculator.ParseResult}-object contained string which represents "name" of <b>operationCode</b>
+     * @return {@link ParseResult}-object contained string which represents "name" of <b>operationCode</b>
      * and {@link java.util.List}-list of String-presented <b>operationCodeSet</b>
      * @throws IllegalArgumentException if <b>inputExpression</b> is invalid
      *

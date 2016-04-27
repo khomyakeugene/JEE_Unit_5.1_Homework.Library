@@ -1,5 +1,6 @@
-package com.company.calculator;
+package com.company.calculator.library;
 
+import org.junit.Assert;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
@@ -26,7 +27,7 @@ public class SimpleParserTest extends ExpressionTest {
         ParseResult parseResult = simpleParser.parse(operationCodeSet, expression);
 
         assertEquals(operationCode, parseResult.operationCode());
-        assertEquals(OperatorType.BINARY, parseResult.operatorType());
+        Assert.assertEquals(OperatorType.BINARY, parseResult.operatorType());
         assertArrayEquals(new String[] {operand_1, operand_2}, parseResult.operandList().toArray());
     }
 
